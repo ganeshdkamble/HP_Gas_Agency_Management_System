@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+    <h2>Booking History</h2>
+
+    <a href="/new_booking" class="btn btn-primary">
+        + New Booking
+    </a>
+
+</div>
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<table class="table table-bordered table-hover">
+
+<thead class="table-dark">
+
+<tr>
+    <th>ID</th>
+    <th>Customer</th>
+    <th>Connection No</th>
+    <th>Booking Date</th>
+    <th>Cylinder</th>
+    <th>Quantity</th>
+    <th>Status</th>
+    <th>Action</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for b in bookings %}
+
+<tr>
+
+<td>{{ b.id }}</td>
+<td>{{ b.full_name }}</td>
+<td>{{ b.connection_no }}</td>
+<td>{{ b.booking_date }}</td>
+<td>{{ b.cylinder_type }}</td>
+<td>{{ b.quantity }}</td>
+<td>
+
+{% if b.delivery_status=="Delivered" %}
+
+<span class="badge bg-success">
+Delivered
+</span>
+
+{% elif b.delivery_status=="Pending" %}
+
+<span class="badge bg-warning text-dark">
+Pending
+</span>
+
+{% else %}
+
+<span class="badge bg-info">
+{{ b.delivery_status }}
+</span>
+
+{% endif %}
+
+</td>
+
+<td>
+
+<a href="/edit_booking/{{ b.id }}"
+class="btn btn-warning btn-sm">
+
+Edit
+
+</a>
+
+<a href="/delete_booking/{{ b.id }}"
+class="btn btn-danger btn-sm"
+onclick="return confirm('Delete Booking?')">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+{% endblock %}

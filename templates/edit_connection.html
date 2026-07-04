@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-warning text-dark">
+                    <h3>Edit Gas Connection</h3>
+                </div>
+
+                <div class="card-body">
+
+                    <form action="/update_connection/{{ connection.id }}" method="POST">
+
+                        <!-- Customer -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">Customer</label>
+
+                            <select name="customer_id" class="form-select" required>
+
+                                {% for customer in customers %}
+
+                                <option value="{{ customer.id }}"
+                                {% if customer.id == connection.customer_id %}
+                                selected
+                                {% endif %}>
+
+                                    {{ customer.full_name }}
+
+                                </option>
+
+                                {% endfor %}
+
+                            </select>
+
+                        </div>
+
+                        <!-- Connection Number -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">Connection Number</label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                value="{{ connection.connection_no }}"
+                                readonly>
+
+                        </div>
+
+                        <!-- Connection Type -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">Connection Type</label>
+
+                            <select name="connection_type" class="form-select">
+
+                                <option value="Domestic"
+                                {% if connection.connection_type=="Domestic" %}
+                                selected
+                                {% endif %}>
+                                Domestic
+                                </option>
+
+                                <option value="Commercial"
+                                {% if connection.connection_type=="Commercial" %}
+                                selected
+                                {% endif %}>
+                                Commercial
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <!-- Aadhaar -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">Aadhaar Number</label>
+
+                            <input
+                                type="text"
+                                name="aadhaar_no"
+                                class="form-control"
+                                value="{{ connection.aadhaar_no }}"
+                                required>
+
+                        </div>
+
+                        <!-- Deposit -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">Security Deposit (₹)</label>
+
+                            <input
+                                type="number"
+                                name="deposit"
+                                class="form-control"
+                                value="{{ connection.deposit }}"
+                                required>
+
+                        </div>
+
+                        <!-- Date -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">Connection Date</label>
+
+                            <input
+                                type="date"
+                                name="connection_date"
+                                class="form-control"
+                                value="{{ connection.connection_date }}"
+                                required>
+
+                        </div>
+
+                        <!-- Status -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">Status</label>
+
+                            <select name="status" class="form-select">
+
+                                <option value="Pending"
+                                {% if connection.status=="Pending" %}
+                                selected
+                                {% endif %}>
+                                Pending
+                                </option>
+
+                                <option value="Approved"
+                                {% if connection.status=="Approved" %}
+                                selected
+                                {% endif %}>
+                                Approved
+                                </option>
+
+                                <option value="Rejected"
+                                {% if connection.status=="Rejected" %}
+                                selected
+                                {% endif %}>
+                                Rejected
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <button class="btn btn-success">
+                            Update Connection
+                        </button>
+
+                        <a href="/connections"
+                           class="btn btn-secondary">
+                            Back
+                        </a>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

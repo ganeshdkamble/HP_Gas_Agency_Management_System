@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Edit Employee</title>
+</head>
+
+<body>
+
+<h2>Edit Employee</h2>
+
+<form action="/update_employee" method="POST">
+
+<input type="hidden"
+name="id"
+value="{{ employee.id }}">
+
+Employee Name
+
+<br>
+
+<input
+type="text"
+name="employee_name"
+value="{{ employee.employee_name }}">
+
+<br><br>
+
+Mobile
+
+<br>
+
+<input
+type="text"
+name="mobile"
+value="{{ employee.mobile }}">
+
+<br><br>
+
+Email
+
+<br>
+
+<input
+type="email"
+name="email"
+value="{{ employee.email }}">
+
+<br><br>
+
+Designation
+
+<br>
+
+<input
+type="text"
+name="designation"
+value="{{ employee.designation }}">
+
+<br><br>
+
+Salary
+
+<br>
+
+<input
+type="number"
+name="salary"
+value="{{ employee.salary }}">
+
+<br><br>
+
+Joining Date
+
+<br>
+
+<input
+type="date"
+name="joining_date"
+value="{{ employee.joining_date }}">
+
+<br><br>
+
+Status
+
+<br>
+
+<input
+type="text"
+name="status"
+value="{{ employee.status }}">
+
+<br><br>
+
+<button>
+
+Update Employee
+
+</button>
+
+</form>
+
+</body>
+</html>

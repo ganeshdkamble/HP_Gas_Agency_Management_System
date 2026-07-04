@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoice</title>
+</head>
+
+<body>
+
+<h1 align="center">HP Gas Agency</h1>
+<hr>
+
+<h2>Payment Receipt</h2>
+
+<p><b>Receipt No :</b> {{ invoice.receipt_no }}</p>
+
+<p><b>Customer :</b> {{ invoice.full_name }}</p>
+
+<p><b>Mobile :</b> {{ invoice.mobile }}</p>
+
+<p><b>Address :</b> {{ invoice.address }}</p>
+
+<hr>
+
+<p><b>Connection No :</b> {{ invoice.connection_no }}</p>
+
+<p><b>Booking Date :</b> {{ invoice.booking_date }}</p>
+
+<p><b>Cylinder :</b> {{ invoice.cylinder_type }}</p>
+
+<p><b>Quantity :</b> {{ invoice.quantity }}</p>
+
+<hr>
+
+<p><b>Amount :</b> ₹ {{ invoice.amount }}</p>
+
+<p><b>Payment Method :</b> {{ invoice.payment_method }}</p>
+
+<p><b>Payment Date :</b> {{ invoice.payment_date }}</p>
+
+<hr>
+
+<button onclick="window.print()">
+Print Receipt
+</button>
+
+</body>
+</html>

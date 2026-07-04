@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-8">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-primary text-white">
+                <h3>New Payment</h3>
+            </div>
+
+            <div class="card-body">
+
+                <form action="/save_payment" method="POST">
+
+                    <!-- Booking -->
+
+                    <div class="mb-3">
+                        <label class="form-label">Select Booking</label>
+
+                        <select name="booking_id" class="form-select" required>
+
+                            <option value="">Select Booking</option>
+
+                            {% for b in bookings %}
+
+                            <option value="{{ b.id }}">
+                                {{ b.full_name }} - {{ b.connection_no }}
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+                    <!-- Amount -->
+
+                    <div class="mb-3">
+                        <label class="form-label">Amount (₹)</label>
+
+                        <input type="number"
+                               name="amount"
+                               class="form-control"
+                               placeholder="Enter Amount"
+                               required>
+
+                    </div>
+
+                    <!-- Payment Method -->
+
+                    <div class="mb-3">
+                        <label class="form-label">Payment Method</label>
+
+                        <select name="payment_method" class="form-select">
+
+                            <option value="Cash">Cash</option>
+                            <option value="UPI">UPI</option>
+                            <option value="Card">Card</option>
+                            <option value="Net Banking">Net Banking</option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Payment Date -->
+
+                    <div class="mb-3">
+                        <label class="form-label">Payment Date</label>
+
+                        <input type="date"
+                               name="payment_date"
+                               class="form-control"
+                               required>
+
+                    </div>
+
+                    <!-- Status -->
+
+                    <div class="mb-3">
+                        <label class="form-label">Payment Status</label>
+
+                        <select name="status" class="form-select">
+
+                            <option value="Paid">Paid</option>
+                            <option value="Pending">Pending</option>
+
+                        </select>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-success">
+                        Save Payment
+                    </button>
+
+                    <a href="/payments" class="btn btn-secondary">
+                        Back
+                    </a>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4">Admin Dashboard</h2>
+
+<div class="row">
+
+    <div class="col-md-3 mb-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <h5>Total Customers</h5>
+                <h2>{{ total_customers }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <h5>Total Connections</h5>
+                <h2>{{ total_connections }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="card bg-warning">
+            <div class="card-body">
+                <h5>Pending Connections</h5>
+                <h2>{{ pending_connections }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="card bg-danger text-white">
+            <div class="card-body">
+                <h5>Today's Revenue</h5>
+                <h2>₹{{ today_revenue }}</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5>Active Bookings</h5>
+                <h2>{{ active_bookings }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5>Delivered Cylinders</h5>
+                <h2>{{ delivered_cylinders }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5>Total Employees</h5>
+                <h2>{{ total_employees }}</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<hr>
+
+<h3>Modules</h3>
+
+<div class="row">
+
+<div class="col-md-3 mb-2">
+<a href="/customer" class="btn btn-primary w-100">Add Customer</a>
+</div>
+
+<div class="col-md-3 mb-2">
+<a href="/customers" class="btn btn-primary w-100">Customer List</a>
+</div>
+
+<div class="col-md-3 mb-2">
+<a href="/new_connection" class="btn btn-success w-100">New Connection</a>
+</div>
+
+<div class="col-md-3 mb-2">
+<a href="/connections" class="btn btn-success w-100">Connection List</a>
+</div>
+
+<div class="col-md-3 mb-2">
+<a href="/new_booking" class="btn btn-warning w-100">New Booking</a>
+</div>
+
+<div class="col-md-3 mb-2">
+<a href="/bookings" class="btn btn-warning w-100">Booking History</a>
+</div>
+
+<div class="col-md-3 mb-2">
+<a href="/new_payment" class="btn btn-info w-100">New Payment</a>
+</div>
+
+<div class="col-md-3 mb-2">
+<a href="/payments" class="btn btn-info w-100">Payment History</a>
+</div>
+
+<div class="col-md-3 mb-2">
+<a href="/new_employee" class="btn btn-secondary w-100">Add Employee</a>
+</div>
+
+<div class="col-md-3 mb-2">
+<a href="/employees" class="btn btn-secondary w-100">Employee List</a>
+</div>
+
+<div class="col-md-3 mb-2">
+<a href="/new_delivery" class="btn btn-dark w-100">New Delivery</a>
+</div>
+
+<div class="col-md-3 mb-2">
+<a href="/deliveries" class="btn btn-dark w-100">Delivery List</a>
+</div>
+
+</div>
+
+{% endblock %}

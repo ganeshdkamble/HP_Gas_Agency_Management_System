@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-8">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-primary text-white">
+                <h3>New Gas Connection</h3>
+            </div>
+
+            <div class="card-body">
+
+                <form action="/save_connection" method="POST">
+
+                    <!-- Customer -->
+                    <div class="mb-3">
+                        <label class="form-label">Customer</label>
+
+                        <select name="customer_id" class="form-select" required>
+
+                            <option value="">Select Customer</option>
+
+                            {% for c in customers %}
+
+                            <option value="{{ c.id }}">
+                                {{ c.full_name }}
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Aadhaar Number</label>
+
+                        <input type="text" name="aadhaar_no" class="form-control" maxlength="12" placeholder="Enter 12-digit Aadhaar Number" required>
+                    </div>
+
+                   
+
+                    <!-- Connection Type -->
+                    <div class="mb-3">
+                        <label class="form-label">Connection Type</label>
+
+                        <select name="connection_type" class="form-select">
+
+                            <option value="Domestic">
+                                Domestic
+                            </option>
+
+                            <option value="Commercial">
+                                Commercial
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Security Deposit (₹)</label>
+
+                        <input type="number" name="deposit" class="form-control" required>
+                    </div>
+
+                    <!-- Issue Date -->
+                    <div class="mb-3">
+                        <label class="form-label">Issue Date</label>
+
+                        <input
+                            type="date"
+                            name="issue_date"
+                            class="form-control"
+                            required>
+
+                    </div>
+
+                    <!-- Status -->
+                    <div class="mb-3">
+                        <label class="form-label">Status</label>
+
+                        <select name="status" class="form-select">
+
+                            <option value="Pending">
+                                Pending
+                            </option>
+
+                            <option value="Approved">
+                                Approved
+                            </option>
+
+                            <option value="Rejected">
+                                Rejected
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-success">
+                        Save Connection
+                    </button>
+
+                    <a href="/connections" class="btn btn-secondary">
+                        Back
+                    </a>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

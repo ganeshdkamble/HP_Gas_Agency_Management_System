@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-warning text-dark">
+                    <h3>Edit Cylinder Booking</h3>
+                </div>
+
+                <div class="card-body">
+
+                    <form action="/update_booking/{{ booking.id }}" method="POST">
+
+                        <!-- Customer -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">Customer</label>
+
+                            <select name="connection_id" class="form-select" required>
+
+                                {% for c in connections %}
+
+                                <option value="{{ c.id }}"
+                                {% if c.id == booking.connection_id %}
+                                selected
+                                {% endif %}>
+
+                                    {{ c.full_name }} - {{ c.connection_no }}
+
+                                </option>
+
+                                {% endfor %}
+
+                            </select>
+
+                        </div>
+
+                        <!-- Booking Date -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">Booking Date</label>
+
+                            <input
+                                type="date"
+                                name="booking_date"
+                                class="form-control"
+                                value="{{ booking.booking_date }}"
+                                required>
+
+                        </div>
+
+                        <!-- Cylinder Type -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">Cylinder Type</label>
+
+                            <select name="cylinder_type" class="form-select">
+
+                                <option value="Domestic"
+                                {% if booking.cylinder_type=="Domestic" %}
+                                selected
+                                {% endif %}>
+                                    Domestic
+                                </option>
+
+                                <option value="Commercial"
+                                {% if booking.cylinder_type=="Commercial" %}
+                                selected
+                                {% endif %}>
+                                    Commercial
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <!-- Quantity -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">Quantity</label>
+
+                            <input
+                                type="number"
+                                name="quantity"
+                                class="form-control"
+                                value="{{ booking.quantity }}"
+                                min="1"
+                                required>
+
+                        </div>
+
+                        <!-- Status -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">Delivery Status</label>
+
+                            <select name="delivery_status" class="form-select">
+
+                                <option value="Pending"
+                                {% if booking.delivery_status=="Pending" %}
+                                selected
+                                {% endif %}>
+                                    Pending
+                                </option>
+
+                                <option value="Out for Delivery"
+                                {% if booking.delivery_status=="Out for Delivery" %}
+                                selected
+                                {% endif %}>
+                                    Out for Delivery
+                                </option>
+
+                                <option value="Delivered"
+                                {% if booking.delivery_status=="Delivered" %}
+                                selected
+                                {% endif %}>
+                                    Delivered
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-success">
+                            Update Booking
+                        </button>
+
+                        <a href="/bookings" class="btn btn-secondary">
+                            Back
+                        </a>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

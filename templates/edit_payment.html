@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-warning">
+                    <h3>Edit Payment</h3>
+                </div>
+
+                <div class="card-body">
+
+                    <form action="/update_payment/{{ payment.id }}" method="POST">
+
+                        <div class="mb-3">
+                            <label class="form-label">Amount</label>
+
+                            <input
+                                type="number"
+                                name="amount"
+                                class="form-control"
+                                value="{{ payment.amount }}"
+                                required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Payment Method</label>
+
+                            <select name="payment_method" class="form-select">
+
+                                <option value="Cash"
+                                {% if payment.payment_method=="Cash" %}selected{% endif %}>
+                                Cash
+                                </option>
+
+                                <option value="UPI"
+                                {% if payment.payment_method=="UPI" %}selected{% endif %}>
+                                UPI
+                                </option>
+
+                                <option value="Card"
+                                {% if payment.payment_method=="Card" %}selected{% endif %}>
+                                Card
+                                </option>
+
+                                <option value="Net Banking"
+                                {% if payment.payment_method=="Net Banking" %}selected{% endif %}>
+                                Net Banking
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">Payment Date</label>
+
+                            <input
+                                type="date"
+                                name="payment_date"
+                                class="form-control"
+                                value="{{ payment.payment_date }}"
+                                required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">Status</label>
+
+                            <select name="status" class="form-select">
+
+                                <option value="Paid"
+                                {% if payment.status=="Paid" %}selected{% endif %}>
+                                Paid
+                                </option>
+
+                                <option value="Pending"
+                                {% if payment.status=="Pending" %}selected{% endif %}>
+                                Pending
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <button class="btn btn-success">
+                            Update Payment
+                        </button>
+
+                        <a href="/payments"
+                           class="btn btn-secondary">
+                            Back
+                        </a>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

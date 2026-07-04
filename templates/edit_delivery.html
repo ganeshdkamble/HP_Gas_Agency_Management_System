@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-warning text-dark">
+                    <h3>Edit Delivery</h3>
+                </div>
+
+                <div class="card-body">
+
+                    <form action="/update_delivery/{{ delivery.id }}" method="POST">
+
+                        <!-- Delivery Boy -->
+
+                        <div class="mb-3">
+                            <label class="form-label">Delivery Boy</label>
+
+                            <select name="employee_id" class="form-select" required>
+
+                                {% for emp in employees %}
+
+                                <option value="{{ emp.id }}"
+                                    {% if emp.id == delivery.employee_id %}
+                                    selected
+                                    {% endif %}>
+
+                                    {{ emp.employee_name }}
+
+                                </option>
+
+                                {% endfor %}
+
+                            </select>
+                        </div>
+
+                        <!-- Delivery Date -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">Delivery Date</label>
+
+                            <input
+                                type="date"
+                                name="delivery_date"
+                                class="form-control"
+                                value="{{ delivery.delivery_date }}"
+                                required>
+
+                        </div>
+
+                        <!-- Delivery Status -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">Delivery Status</label>
+
+                            <select name="delivery_status" class="form-select">
+
+                                <option value="Pending"
+                                {% if delivery.delivery_status=="Pending" %}
+                                selected
+                                {% endif %}>
+                                Pending
+                                </option>
+
+                                <option value="Out for Delivery"
+                                {% if delivery.delivery_status=="Out for Delivery" %}
+                                selected
+                                {% endif %}>
+                                Out for Delivery
+                                </option>
+
+                                <option value="Delivered"
+                                {% if delivery.delivery_status=="Delivered" %}
+                                selected
+                                {% endif %}>
+                                Delivered
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                       
+
+                        <button class="btn btn-success">
+                            Update Delivery
+                        </button>
+
+                        <a href="/deliveries" class="btn btn-secondary">
+                            Back
+                        </a>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

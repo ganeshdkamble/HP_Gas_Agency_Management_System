@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+    <h2>Delivery List</h2>
+
+    <a href="/new_delivery" class="btn btn-primary">
+        + New Delivery
+    </a>
+
+</div>
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <table class="table table-bordered table-hover">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Customer</th>
+                    <th>Connection No</th>
+                    <th>Delivery Boy</th>
+                    <th>Delivery Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for d in deliveries %}
+
+            <tr>
+
+                <td>{{ d.id }}</td>
+
+                <td>{{ d.full_name }}</td>
+
+                <td>{{ d.connection_no }}</td>
+
+                <td>{{ d.employee_name }}</td>
+
+                <td>{{ d.delivery_date }}</td>
+
+                <td>
+
+                    {% if d.delivery_status=="Delivered" %}
+
+                        <span class="badge bg-success">
+                            Delivered
+                        </span>
+
+                    {% elif d.delivery_status=="Out for Delivery" %}
+
+                        <span class="badge bg-warning text-dark">
+                            Out for Delivery
+                        </span>
+
+                    {% else %}
+
+                        <span class="badge bg-secondary">
+                            Pending
+                        </span>
+
+                    {% endif %}
+
+                </td>
+
+
+                <td>
+
+                    <a href="/edit_delivery/{{ d.id }}"
+                       class="btn btn-warning btn-sm">
+
+                        Edit
+
+                    </a>
+
+                    <a href="/delete_delivery/{{ d.id }}"
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('Delete Delivery?')">
+
+                        Delete
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

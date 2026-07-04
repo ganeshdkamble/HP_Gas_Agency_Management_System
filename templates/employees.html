@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+    <h2>Employee List</h2>
+    <div class="row mb-3">
+
+    <div class="col-md-6">
+
+        <form method="GET" action="/employees">
+
+            <div class="input-group">
+
+                <input
+                    type="text"
+                    name="search"
+                    class="form-control"
+                    placeholder="Search by Name or Mobile"
+                    value="{{ search if search else '' }}">
+
+                <button class="btn btn-primary">
+                    Search
+                </button>
+
+                <a href="/employees" class="btn btn-secondary">
+                    Reset
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    </div>
+
+    <a href="/new_employee" class="btn btn-primary">
+        + Add Employee
+    </a>
+
+</div>
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<table class="table table-bordered table-hover">
+
+    <thead class="table-dark">
+
+        <tr>
+
+            <th>ID</th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Mobile</th>
+            <th>Status</th>
+            <th>Action</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+    {% for e in employees %}
+
+    <tr>
+
+        <td>{{ e.id }}</td>
+        <td>{{ e.employee_name }}</td>
+        <td>{{ e.designation }}</td>
+        <td>{{ e.mobile }}</td>
+        <td>{{ e.status }}</td>
+
+        <td>
+
+            <a href="/edit_employee/{{ e.id }}"
+               class="btn btn-warning btn-sm">
+                Edit
+            </a>
+
+            <a href="/delete_employee/{{ e.id }}"
+               class="btn btn-danger btn-sm"
+               onclick="return confirm('Delete Employee?')">
+                Delete
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+</div>
+
+</div>
+
+{% endblock %}

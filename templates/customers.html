@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Customer List</h2>
+    <div class="row mb-3">
+
+    <div class="col-md-6">
+
+        <form method="GET" action="/customers">
+
+            <div class="input-group">
+
+                <input
+                    type="text"
+                    name="search"
+                    class="form-control"
+                    placeholder="Search by Name or Mobile"
+                    value="{{ search if search else '' }}">
+
+                <button class="btn btn-primary">
+                    Search
+                </button>
+
+                <a href="/customers" class="btn btn-secondary">
+                    Reset
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+    <a href="/customer" class="btn btn-primary">
+        + Add Customer
+    </a>
+</div>
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <table class="table table-bordered table-hover">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th width="170">Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for c in customer %}
+
+            <tr>
+
+                <td>{{ c.id }}</td>
+                <td>{{ c.full_name }}</td>
+                <td>{{ c.mobile }}</td>
+                <td>{{ c.email }}</td>
+                <td>{{ c.address }}</td>
+
+                <td>
+
+                    <a href="/edit_customer/{{ c.id }}"
+                       class="btn btn-warning btn-sm">
+
+                        Edit
+
+                    </a>
+
+                    <a href="/delete_customer/{{ c.id }}"
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('Delete this customer?')">
+
+                        Delete
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}
